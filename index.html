@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sahyog Academy offers affordable, high-quality education for government school students, with courses from Class 5 to 12 and competitive exam preparation for SSC CGL, UPSC, and more.">
+    <meta name="keywords" content="education, online learning, competitive exams, SSC CGL, UPSC, affordable coaching, government school students">
+    <meta name="author" content="Sahyog Academy">
+    <title>Sahyog Academy - Empowering Minds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <style>
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #f28c38; /* Orange */
+            --text-color: #333333; /* Dark text for dark mode */
+            --light-bg: #f7f9fb; /* Light background for light mode */
+            --light-text: #333333; /* Dark text for light mode */
+            --error-color: #dc3545; /* Error states */
+            --success-color: #28a745; /* Success states */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #ffffff; /* Default white to prevent overlap */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            scroll-behavior: smooth;
+        }
+
+        body.light-mode {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        body.light-mode .header,
+        body.light-mode .hero-section,
+        body.light-mode .about-section,
+        body.light-mode .courses-section,
+        body.light-mode .pricing-section,
+        body.light-mode .resources-section,
+        body.light-mode .testimonials-section,
+        body.light-mode .quiz-section,
+        body.light-mode .schedule-section,
+        body.light-mode .contact-section,
+        body.light-mode .footer {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        body.light-mode .course-card,
+        body.light-mode .price-card,
+        body.light-mode .resource-card,
+        body.light-mode .testimonial-card,
+        body.light-mode .dashboard-card,
+        body.light-mode .chat-box {
+            background-color: #ffffff;
+            border-color: rgba(0, 123, 255, 0.2);
+            box-shadow: var(--shadow);
+        }
+
+        body.light-mode .contact-form input,
+        body.light-mode .contact-form textarea,
+        body.light-mode .newsletter-form input,
+        body.light-mode .resource-search,
+        body.light-mode .chat-input input {
+            background-color: #f0f2f4;
+            border-color: #ccc;
+            color: var(--light-text);
+        }
+
+        body.light-mode .nav-links a,
+        body.light-mode .theme-toggle,
+        body.light-mode .language-toggle {
+            color: var(--light-text);
+        }
+
+        body.light-mode .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+            contain: content;
+            position: relative;
+            z-index: 1; /* Ensure sections are above background */
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .section-title:hover::after {
+            width: 80px;
+        }
+
+        /* Header and Navbar */
+        .header {
+            background-color: rgba(255, 255, 255, 0.9); /* White with transparency */
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle,
+        .language-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .language-toggle {
+            padding: 8px 12px;
+            border-radius: 5px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+        }
+
+        .hamburger .bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 123, 255, 0.7), rgba(242, 140, 56, 0.7)), url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+            color: #ffffff;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content .typing-text {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            min-height: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover,
+        .cta-button:focus {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            background-color: var(--secondary-color);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-bar {
+            background-color: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-bar div {
+            background-color: var(--primary-color);
+            height: 100%;
+            transition: width 1s ease;
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            background-color: #ffffff;
+        }
+
+        .schedule-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .schedule-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: left;
+        }
+
+        .schedule-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: var(--secondary-color);
+        }
+
+        .swiper-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .testimonial-card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: left;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .testimonial-card h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background-color: #ffffff;
+        }
+
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .quiz-options label {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background-color: #f0f2f4;
+            margin: 8px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-options label:hover {
+            background-color: #e0e6ed;
+        }
+
+        .quiz-options input {
+            margin-right: 10px;
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Resources Section */
+        .resource-search {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f0f2f4;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .resource-search:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: #ffffff;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f2f4;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+
+        .contact-form .form-message {
+            font-size: 0.9rem;
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .chat-widget:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-box {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 320px;
+            max-height: 400px;
+            background-color: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: none;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 999;
+        }
+
+        .chat-box.active {
+            display: flex;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        .chat-messages p {
+            margin: 5px 0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .chat-messages p.user-message {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            margin-left: auto;
+        }
+
+        .chat-messages p.bot-message {
+            background-color: #f0f2f4;
+            color: var(--text-color);
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f0f2f4;
+            color: var(--text-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-links {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .newsletter-form {
+            max-width: 400px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f0f2f4;
+            color: var(--text-color);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Animations */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            50% { border-color: transparent; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: rgba(255, 255, 255, 0.95);
+                padding: 20px;
+                box-shadow: var(--shadow);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a,
+            .nav-links .language-toggle,
+            .nav-links .theme-toggle {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+            }
+
+            .hero-content .typing-text {
+                font-size: clamp(0.9rem, 2vw, 1rem);
+            }
+
+            .section {
+                padding: 60px 15px;
+            }
+
+            .dashboard-grid,
+            .schedule-grid,
+            .resources-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-box {
+                width: 90%;
+                right: 5%;
+                bottom: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .contact-form input,
+            .contact-form textarea,
+            .newsletter-form input {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" role="banner">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="#" class="logo" aria-label="Sahyog Academy Home">Sahyog Academy</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" aria-label="About Us">About Us</a>
+                <a href="#dashboard" aria-label="Student Dashboard">Dashboard</a>
+                <a href="#courses" aria-label="Courses">Courses</a>
+                <a href="#pricing" aria-label="Pricing">Pricing</a>
+                <a href="#testimonials" aria-label="Testimonials">Testimonials</a>
+                <a href="#quiz" aria-label="Sample Quiz">Quiz</a>
+                <a href="#schedule" aria-label="Live Class Schedule">Schedule</a>
+                <a href="#resources" aria-label="Study Resources">Resources</a>
+                <a href="#contact" aria-label="Contact Us">Contact</a>
+                <select class="language-toggle" id="languageToggle" aria-label="Select language">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                </select>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+            </div>
+            <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section" role="region" aria-label="Hero section">
+            <div class="hero-content" data-aos="fade-up">
+                <h1>Unlock Your Potential with Sahyog Academy</h1>
+                <p class="typing-text" id="typingText"></p>
+                <a href="#courses" class="cta-button" aria-label="Explore our courses">Explore Courses</a>
+            </div>
+        </section>
+
+        <section id="dashboard" class="section dashboard-section" data-aos="fade-up">
+            <h2 class="section-title">Your Learning Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-card" data-aos="zoom-in">
+                    <h3>Course Progress</h3>
+                    <p>Class 10 Mathematics</p>
+                    <div class="progress-bar"><div style="width: 75%;"></div></div>
+                    <p>75% Complete</p>
+                    <span class="badge" style="display: inline-block; padding: 5px 10px; background-color: var(--primary-color); color: #ffffff; border-radius: 5px; margin-top: 10px;">Earned: Math Master</span>
+                </div>
+                <div class="dashboard-card" data-aos="zoom-in" data-aos-delay="100">
+                    <h3>Upcoming Assignment</h3>
+                    <p>Science Quiz - Due: 25 Aug 2025</p>
+                    <a href="#" class="cta-button" aria-label="Start assignment">Start Now</a>
+                </div>
+                <div class="dashboard-card" data-aos="zoom-in" data-aos-delay="200">
+                    <h3>Recent Activity</h3>
+                    <p>Completed: Algebra Basics</p>
+                    <p>Score: 85%</p>
+                    <a href="#" class="cta-button" aria-label="View details">View Details</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about-section" data-aos="fade-up">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <p>At Sahyog Academy, our mission is to provide accessible and high-quality education to students who might not have the means to join expensive coaching classes. We believe that every student, regardless of their background, deserves the opportunity to excel. Our dedicated team of experienced educators is committed to guiding you from Class 5 up to Class 12 and beyond, with a focus on competitive exam preparation like SSC CGL and UPSC right from the basics.</p>
+                <p>With interactive online classes, AI-driven progress tracking, and personalized mentoring, we ensure every student achieves their full potential.</p>
+            </div>
+        </section>
+
+        <section id="courses" class="section courses-section" data-aos="fade-up">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="course-grid">
+                <div class="course-card" data-aos="zoom-in">
+                    <i class="fas fa-book fa-2x" style="color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3>Academic Excellence</h3>
+                    <p>Comprehensive coaching for school curriculum from Class 5 to 12. Strong foundation for all subjects.</p>
+                    <a href="#" class="cta-button" aria-label="Learn more about Academic Excellence">Learn More</a>
+                </div>
+                <div class="course-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-trophy fa-2x" style="color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3>Competitive Exam Prep</h3>
+                    <p>Early preparation for top-tier competitive exams like UPSC, SSC CGL, and more, starting from Class 6.</p>
+                    <a href="#" class="cta-button" aria-label="Learn more about Competitive Exam Prep">Learn More</a>
+                </div>
+                <div class="course-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-user-check fa-2x" style="color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3>Customized Learning</h3>
+                    <p>Personalized attention and doubt-clearing sessions to ensure every student understands the concepts.</p>
+                    <a href="#" class="cta-button" aria-label="Learn more about Customized Learning">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="schedule" class="section schedule-section" data-aos="fade-up">
+            <h2 class="section-title">Live Class Schedule</h2>
+            <div class="schedule-container">
+                <div class="schedule-grid">
+                    <div class="schedule-card" data-aos="fade-up">
+                        <h4>Mathematics</h4>
+                        <p>Class 10: Algebra</p>
+                        <p>Date: 22 Aug 2025, 5 PM</p>
+                        <a href="#" class="cta-button" aria-label="Join Mathematics class">Join Class</a>
+                    </div>
+                    <div class="schedule-card" data-aos="fade-up" data-aos-delay="100">
+                        <h4>Science</h4>
+                        <p>Class 9: Physics Basics</p>
+                        <p>Date: 23 Aug 2025, 6 PM</p>
+                        <a href="#" class="cta-button" aria-label="Join Science class">Join Class</a>
+                    </div>
+                    <div class="schedule-card" data-aos="fade-up" data-aos-delay="200">
+                        <h4>UPSC Prep</h4>
+                        <p>Class 12: Current Affairs</p>
+                        <p>Date: 24 Aug 2025, 7 PM</p>
+                        <a href="#" class="cta-button" aria-label="Join UPSC Prep class">Join Class</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section testimonials-section" data-aos="fade-up">
+            <h2 class="section-title">What Our Students Say</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <p>"Sahyog Academy helped me excel in my Class 10 exams with their affordable and quality coaching!"</p>
+                            <h4>Anita Sharma, Class 10</h4>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <p>"The UPSC prep course gave me a strong foundation right from Class 8. Highly recommend!"</p>
+                            <h4>Rahul Verma, Class 12</h4>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <p>"The personalized attention I received made all the difference in my studies."</p>
+                            <h4>Priya Singh, Class 9</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <section id="quiz" class="section quiz-section" data-aos="fade-up">
+            <h2 class="section-title">Try a Sample Quiz</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <p>What is the capital of India?</p>
+                    <div class="quiz-options">
+                        <label><input type="radio" name="q1" value="a" aria-label="Mumbai"> Mumbai</label>
+                        <label><input type="radio" name="q1" value="b" aria-label="Delhi"> Delhi</label>
+                        <label><input type="radio" name="q1" value="c" aria-label="Kolkata"> Kolkata</label>
+                        <label><input type="radio" name="q1" value="d" aria-label="Chennai"> Chennai</label>
+                    </div>
+                </div>
+                <button class="cta-button" id="submitQuiz" aria-label="Submit quiz answer">Submit Answer</button>
+                <div class="quiz-result" id="quizResult"></div>
+            </div>
+        </section>
+
+        <section id="pricing" class="section pricing-section" data-aos="fade-up">
+            <h2 class="section-title">Affordable Pricing</h2>
+            <p class="pricing-intro">Making quality education accessible to everyone. Our transparent pricing structure is designed to be low-cost for all students.</p>
+            <div class="pricing-grid">
+                <div class="price-card" data-aos="zoom-in">
+                    <h4>Class 5 - 8</h4>
+                    <p class="price-amount">₹199<span>/month</span></p>
+                    <p class="admission-fee">Admission Fee: ₹99</p>
+                    <a href="#contact" class="cta-button" aria-label="Enroll for Class 5-8">Enroll Now</a>
+                </div>
+                <div class="price-card" data-aos="zoom-in" data-aos-delay="100">
+                    <h4>Class 9 - 10</h4>
+                    <p class="price-amount">₹399<span>/month</span></p>
+                    <p class="admission-fee">Admission Fee: ₹99</p>
+                    <a href="#contact" class="cta-button" aria-label="Enroll for Class 9-10">Enroll Now</a>
+                </div>
+                <div class="price-card" data-aos="zoom-in" data-aos-delay="200">
+                    <h4>Class 11 - 12</h4>
+                    <p class="price-amount">₹499<span>/month</span></p>
+                    <p class="admission-fee">Admission Fee: ₹99</p>
+                    <a href="#contact" class="cta-button" aria-label="Enroll for Class 11-12">Enroll Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="section resources-section" data-aos="fade-up">
+            <h2 class="section-title">Study Resources</h2>
+            <input type="text" class="resource-search" id="resourceSearch" placeholder="Search resources..." aria-label="Search study resources">
+            <div class="resources-grid" id="resourcesGrid">
+                <div class="resource-card" data-aos="zoom-in" data-resource="Class 5-8 Notes">
+                    <i class="fas fa-file-pdf fa-2x" style="color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3>Class 5-8 Notes</h3>
+                    <p>Mathematics, Science, and Social Science notes.</p>
+                    <a href="#" class="cta-button" aria-label="Download Class 5-8 Notes">Download</a>
+                </div>
+                <div class="resource-card" data-aos="zoom-in" data-aos-delay="100" data-resource="Class 9-10 Materials">
+                    <i class="fas fa-file-alt fa-2x" style="color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3>Class 9-10 Materials</h3>
+                    <p>Physics, Chemistry, Biology, and English study guides.</p>
+                    <a href="#" class="cta-button" aria-label="Download Class 9-10 Materials">Download</a>
+                </div>
+                <div class="resource-card" data-aos="zoom-in" data-aos-delay="200" data-resource="Competitive Prep Sheets">
+                    <i class="fas fa-pencil-alt fa-2x" style="color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <h3>Competitive Prep Sheets</h3>
+                    <p>Practice papers and previous year questions for SSC and UPSC.</p>
+                    <a href="#" class="cta-button" aria-label="Download Competitive Prep Sheets">Download</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section" data-aos="fade-up">
+            <h2 class="section-title">Get in Touch</h2>
+            <p>Ready to start your journey with Sahyog Academy? Fill out the form below to get more information.</p>
+            <form class="contact-form" id="contactForm" aria-label="Contact form">
+                <input type="text" name="name" placeholder="Your Name" required aria-required="true" aria-label="Your Name">
+                <input type="email" name="email" placeholder="Your Email" required aria-required="true" aria-label="Your Email">
+                <input type="tel" name="phone" placeholder="Your Phone Number" aria-label="Your Phone Number">
+                <textarea name="message" placeholder="Your Message or Query" rows="5" aria-label="Your Message"></textarea>
+                <button type="submit" class="cta-button" aria-label="Submit contact form">Submit</button>
+                <p class="form-message" id="formMessage"></p>
+            </form>
+        </section>
+    </main>
+
+    <div class="chat-widget" id="chatWidget" aria-label="Open chat support">
+        <i class="fas fa-comment"></i>
+    </div>
+    <div class="chat-box" id="chatBox">
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message..." aria-label="Chat input">
+            <button class="cta-button" id="sendMessage" aria-label="Send chat message">Send</button>
+        </div>
+    </div>
+
+    <div class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-links">
+            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Visit our Facebook page">Facebook</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Visit our Twitter page">Twitter</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="Visit our LinkedIn page">LinkedIn</a>
+            <a href="/privacy" aria-label="Privacy Policy">Privacy Policy</a>
+            <a href="/terms" aria-label="Terms of Service">Terms of Service</a>
+        </div>
+        <form class="newsletter-form" id="newsletterForm" aria-label="Newsletter subscription">
+            <input type="email" placeholder="Subscribe to our newsletter" required aria-label="Email for newsletter subscription">
+            <button type="submit" class="cta-button" aria-label="Subscribe to newsletter">Subscribe</button>
+        </form>
+        <p>&copy; 2025 Sahyog Academy. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            mirror: false
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Typing Effect
+        const typingText = document.getElementById('typingText');
+        const phrases = [
+            "High-quality, affordable coaching for government school students.",
+            "Prepare for a bright future with our expert guidance.",
+            "Empowering minds, one student at a time."
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        function type() {
+            if (charIndex < phrases[phraseIndex].length) {
+                typingText.textContent += phrases[phraseIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 50);
+            } else {
+                setTimeout(() => {
+                    typingText.textContent = '';
+                    charIndex = 0;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    type();
+                }, 2000);
+            }
+        }
+        type();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeToggle.innerHTML = document.body.classList.contains('light-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        // Language Toggle (Placeholder)
+        const languageToggle = document.getElementById('languageToggle');
+        languageToggle.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            alert(`Language changed to ${lang === 'en' ? 'English' : 'Hindi'}. Translation logic not implemented.`);
+        });
+
+        // Testimonials Slider
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            slidesPerView: 1,
+            spaceBetween: 20,
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        });
+
+        // Quiz Functionality
+        const submitQuiz = document.getElementById('submitQuiz');
+        const quizResult = document.getElementById('quizResult');
+        submitQuiz.addEventListener('click', () => {
+            const answer = document.querySelector('input[name="q1"]:checked');
+            quizResult.style.display = 'block';
+            if (answer && answer.value === 'b') {
+                quizResult.textContent = 'Correct! The capital of India is Delhi.';
+                quizResult.style.color = 'var(--success-color)';
+            } else {
+                quizResult.textContent = 'Incorrect. The capital of India is Delhi.';
+                quizResult.style.color = 'var(--error-color)';
+            }
+        });
+
+        // Resource Search
+        const resourceSearch = document.getElementById('resourceSearch');
+        const resourcesGrid = document.getElementById('resourcesGrid');
+        const resourceCards = resourcesGrid.querySelectorAll('.resource-card');
+        resourceSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            resourceCards.forEach(card => {
+                const resourceName = card.getAttribute('data-resource').toLowerCase();
+                card.style.display = resourceName.includes(searchTerm) ? 'block' : 'none';
+            });
+        });
+
+        // Contact Form Validation
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = contactForm.name.value.trim();
+            const email = contactForm.email.value.trim();
+            if (name && email.includes('@')) {
+                formMessage.textContent = 'Thank you for your submission!';
+                formMessage.style.color = 'var(--success-color)';
+                contactForm.reset();
+            } else {
+                formMessage.textContent = 'Please fill in all required fields correctly.';
+                formMessage.style.color = 'var(--error-color)';
+            }
+        });
+
+        // Newsletter Form
+        const newsletterForm = document.getElementById('newsletterForm');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input[type="email"]').value.trim();
+            if (email.includes('@')) {
+                alert('Thank you for subscribing!');
+                newsletterForm.reset();
+            } else {
+                alert('Please enter a valid email.');
+            }
+        });
+
+        // Chat Widget with Simple AI Bot
+        const chatWidget = document.getElementById('chatWidget');
+        const chatBox = document.getElementById('chatBox');
+        const sendMessage = document.getElementById('sendMessage');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+        chatWidget.addEventListener('click', () => {
+            chatBox.classList.toggle('active');
+        });
+        sendMessage.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                const userMessage = document.createElement('p');
+                userMessage.textContent = `You: ${message}`;
+                userMessage.classList.add('user-message');
+                chatMessages.appendChild(userMessage);
+                chatInput.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                setTimeout(() => {
+                    const botMessage = document.createElement('p');
+                    botMessage.classList.add('bot-message');
+                    if (message.toLowerCase().includes('course')) {
+                        botMessage.textContent = 'Bot: You can explore our courses in the "Courses" section or contact us for personalized guidance!';
+                    } else if (message.toLowerCase().includes('pricing')) {
+                        botMessage.textContent = 'Bot: Check out our affordable pricing plans in the "Pricing" section!';
+                    } else {
+                        botMessage.textContent = 'Bot: Thank you for your message! How can I assist you further?';
+                    }
+                    chatMessages.appendChild(botMessage);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        });
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage.click();
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // PWA Service Worker (Placeholder)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js').catch(err => console.log('Service Worker Error:', err));
+        }
+
+        // Lazy Load Images
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('loading', 'lazy');
+        });
+    </script>
+
+    <!-- Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Sahyog Academy",
+        "description": "Affordable, high-quality education for government school students, offering courses from Class 5 to 12 and competitive exam preparation for SSC CGL, UPSC, and more.",
+        "url": "https://sahyogacademy.com",
+        "logo": "https://sahyogacademy.com/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "info@sahyogacademy.com",
+            "contactType": "Customer Support"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Education Lane",
+            "addressLocality": "New Delhi",
+            "addressCountry": "IN"
+        }
+    }
+    </script>
+</body>
+</html>
